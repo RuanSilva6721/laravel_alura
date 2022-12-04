@@ -19,9 +19,10 @@ Route::get('/', function () {
 });
 
 Route::controller(SeriesController::class)->group(function () {
-    Route::get('/series',  'index');
+    Route::get('/series',  'index')->name('series.index');
     Route::get('/series/criar', 'create')->name('series.create');
     Route::post('/series/salvar', 'store')->name('series.store');
+    Route::delete('/series/destroy/{id}', 'destroy')->name('series.destroy');
 });
 
 // Route::resource('/series', [SeriesController::class]);

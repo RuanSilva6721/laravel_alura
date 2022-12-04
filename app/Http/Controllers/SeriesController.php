@@ -30,4 +30,10 @@ class SeriesController extends Controller
 
         return redirect('/series');
     }
+
+    public function destroy(Request $request){
+        Serie::destroy($request->id);
+        return redirect(route('series.index'));
+
+    }
 }
