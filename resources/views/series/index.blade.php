@@ -1,6 +1,14 @@
 <x-layout title="Séries">
     <a href="/series/criar" class="btn btn-dark mb-2">Adicionar</a>
 
+    @isset($mesagemSucesso)
+        <div class="alert alert-success">
+           <p> {{ $mesagemSucesso }}</p>
+
+        </div>
+
+    @endisset
+
     <ul class="list-group ">
         @foreach ($series as $serie)
         <li class="list-group-item d-flex justify-content-between align-items-center">{{ $serie->nome }}
