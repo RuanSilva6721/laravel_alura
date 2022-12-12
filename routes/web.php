@@ -23,6 +23,7 @@ Route::controller(SeriesController::class)->group(function () {
     Route::get('/series/criar', 'create')->name('series.create');
     Route::post('/series/salvar', 'store')->name('series.store');
     Route::delete('/series/destroy/{id}', 'destroy')->name('series.destroy');
+    Route::post('/series/edit/{id}', 'edit')->name('series.edit');
 });
 
 // Route::resource('/series', [SeriesController::class]);

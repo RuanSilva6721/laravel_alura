@@ -30,19 +30,25 @@ class SeriesController extends Controller
         // $serie = new Serie();
         // $serie->nome = $nomeSerie;
         // $serie->save();
-        Serie::create($request->all());
-        $request->session()->flash('messagem.sucesso', 'Série adicionada com sucesso!');
+        $serie = Serie::create($request->all());
+        $request->session()->flash('messagem.sucesso', 'Série '.$serie->nome.' adicionada com sucesso!');
 
         return redirect('/series');
     }
 
     public function destroy(Request $request){
+
+        $serie = Serie::find($request->id);
+
         Serie::destroy($request->id);
 
-        $request->session()->flash('messagem.sucesso', 'Série removida com sucesso!');
 
+        return redirect(route('series.index'))->with('messagem.sucesso', 'Serie '.$serie->nome.' removida com sucesso!');
 
-        return redirect(route('series.index'));
+    }
+
+    public function edit(Serie $serie){
+        return view('series.edit', ['serie' => $serie]);
 
     }
 }
