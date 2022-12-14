@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Repositories\SeriesRepository;
 use Illuminate\Support\Facades\DB;
 
+
 class SeriesController extends Controller
 {
 
@@ -21,6 +22,7 @@ class SeriesController extends Controller
 
     public function index(Request $request)
     {
+
         $series = Series::all();
         $mensagemSucesso = session('mensagem.sucesso');
 
