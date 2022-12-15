@@ -12,7 +12,7 @@
         </div>
 
     <button type="submit" class="btn btn-primary mt-3 mb-2">Entrar</button>
-        <a href="{{ route('users.create')  }}" class="btn btn-secondary mt-3">Registrar</a>
+        <a href="{{ route('users.create') }}" class="btn btn-secondary mt-3">Registrar</a>
 
     </form>
 </x-layout>

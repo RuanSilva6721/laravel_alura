@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
@@ -34,7 +33,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except(['token']);
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+
+        Auth::login($user);
+        return to_route('series.index');
+
     }
 
     /**
@@ -77,8 +82,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+        return to_route('login');
     }
 }

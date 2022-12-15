@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ route('users.logout') }}">Series</a>
+          <a href="{{ route('users.logout') }}">Sair</a>
+        </div>
+      </nav>
 <div class="container">
     <h1>{{ $title }}</h1>
     @isset($mensagemSucesso)
