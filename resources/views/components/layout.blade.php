@@ -12,7 +12,13 @@
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{ route('users.logout') }}">Series</a>
+          @auth
           <a href="{{ route('users.logout') }}">Sair</a>
+          @endauth
+          @guest
+          <a href="{{ route('login') }}">Entrar</a>
+          @endguest
+
         </div>
       </nav>
 <div class="container">

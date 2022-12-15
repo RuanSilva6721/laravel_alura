@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Autenticador;
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Episode;
 use App\Models\Season;
@@ -16,6 +17,7 @@ class SeriesController extends Controller
 
     public function __construct(private SeriesRepository $seriesRepository)
     {
+        $this->middleware(Autenticador::class)->except('index');
 
     }
 

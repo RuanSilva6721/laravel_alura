@@ -28,15 +28,22 @@ Route::get('/', function () {
 Route::resource('/series', SeriesController::class)
     ->except(['show']);
 
-Route::get('/series/{series}/seasons', [SeasonsController::class, 'index'])->name('seasons.index');
 
-Route::get('season/{season}/episodes', [EpisodesController::class, 'index'])-> name('episodes.index');
-Route::post('season/{season}/episodes', [EpisodesController::class, 'update'])-> name('episodes.update');
-//login
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('loginStore');
-//user
-route::get('/register', [UsersController::class, 'create'])->name('users.create');
-route::post('/register', [UsersController::class, 'store'])->name('users.store');
-route::get('/registerDestroy', [UsersController::class, 'destroy'])->name('users.logout');
+Route::middleware('Autenticador')->group(function(){
+    Route::get('/series/{series}/seasons', [SeasonsController::class, 'index'])->name('seasons.index');
 
+    Route::get('season/{season}/episodes', [EpisodesController::class, 'index'])-> name('episodes.index');
+    Route::post('season/{season}/episodes', [EpisodesController::class, 'update'])-> name('episodes.update');
+
+
+
+
+});
+
+    //login
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->name('loginStore');
+    //user
+    route::get('/register', [UsersController::class, 'create'])->name('users.create');
+    route::post('/register', [UsersController::class, 'store'])->name('users.store');
+    route::get('/registerDestroy', [UsersController::class, 'destroy'])->name('users.logout');
