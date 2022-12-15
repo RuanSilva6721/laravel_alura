@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SeasonsController;
 use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\UsersController;
+use App\Mail\SeriesCreated;
 use App\Middleware\Autenticador;
 use App\Models\Episode;
 use Illuminate\Http\Request;
@@ -47,3 +48,13 @@ Route::middleware('Autenticador')->group(function(){
     route::get('/register', [UsersController::class, 'create'])->name('users.create');
     route::post('/register', [UsersController::class, 'store'])->name('users.store');
     route::get('/registerDestroy', [UsersController::class, 'destroy'])->name('users.logout');
+
+
+Route::get('/email', function() {
+    return new SeriesCreated(
+        $nomeSerie = 'Série Teste',
+        $nome = 'Ruan'
+
+    );
+});
+
